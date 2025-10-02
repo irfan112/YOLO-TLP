@@ -834,3 +834,29 @@ cat yolov12n-visdrone-dynamic.yaml
 yolo train model=yolov12n-visdrone-dynamic.yaml data=visdrone.yaml epochs=300 batch=128
 
 The code will now correctly analyze your VisDrone dataset and generate an optimal 4-scale configuration! 🎯
+-----------------------
+
+60 epochs completed in 1.330 hours.
+Optimizer stripped from /media/cv/47147876-7940-488e-acb2-0ebc8e3c3679/home/repos/yolov12/runs/detect/train/weights/last.pt, 5.4MB
+Optimizer stripped from /media/cv/47147876-7940-488e-acb2-0ebc8e3c3679/home/repos/yolov12/runs/detect/train/weights/best.pt, 5.4MB
+
+Validating /media/cv/47147876-7940-488e-acb2-0ebc8e3c3679/home/repos/yolov12/runs/detect/train/weights/best.pt...
+Ultralytics 8.3.204 🚀 Python-3.10.18 torch-2.2.2+cu121 CUDA:0 (NVIDIA GeForce RTX 3060, 11910MiB)
+YOLOv12n summary (fused): 159 layers, 2,528,726 parameters, 0 gradients, 5.9 GFLOPs
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 18/18 2.8it/s 6.4s
+                   all        548      38759       0.42      0.328      0.323      0.188
+            pedestrian        520       8844      0.435      0.338       0.34      0.143
+                people        482       5125      0.485      0.222      0.261      0.094
+               bicycle        364       1287      0.198      0.106     0.0711     0.0293
+                   car        515      14064       0.62      0.746      0.748       0.51
+                   van        421       1975      0.441      0.375      0.368      0.252
+                 truck        266        750      0.422      0.313      0.306      0.198
+              tricycle        337       1045      0.378      0.236       0.21      0.115
+       awning-tricycle        220        532      0.231      0.137      0.109     0.0669
+                   bus        131        251      0.541      0.446       0.47      0.332
+                 motor        485       4886      0.452      0.363      0.348      0.141
+Speed: 0.1ms preprocess, 2.8ms inference, 0.0ms loss, 0.5ms postprocess per image
+Results saved to /media/cv/47147876-7940-488e-acb2-0ebc8e3c3679/home/repos/yolov12/runs/detect/train
+💡 Learn more at https://docs.ultralytics.com/modes/train
+
+-----------------------------------

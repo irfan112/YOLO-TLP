@@ -58,6 +58,9 @@ from .block import (
     SCDown,
     TorchVision,
     A2C2f,
+    CBAM,
+    CBAM_Lite,
+    SPDConv,
 )
 from .conv import (
     CBAM,

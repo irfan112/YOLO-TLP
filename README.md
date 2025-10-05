@@ -322,3 +322,20 @@
 - **Motor: +2.6%** (0.357 vs 0.348) - Improved motorcycle detection
 
 > **YOLO-TLP excels at detecting small objects thanks to SPDConv architecture preserving spatial information**
+
+
+## Strict Localization Performance (mAP50-95)
+
+<div align="center">
+  <img src="assets/mAP50-95 Comparison.jpg" alt="mAP50-95 Small Object Detection Performance" width="100%">
+</div>
+
+### Key Findings:
+
+- **People: +16.0%** (0.109 vs 0.094) - Excellent localization accuracy
+- **Bicycle: +14.0%** (0.033 vs 0.029) - Better bounding box precision
+- **Awning-Tricycle: +13.4%** (0.076 vs 0.067) - Improved tight fit detection
+- **Pedestrian: +9.1%** (0.156 vs 0.143) - More accurate person boxes
+- **Motor: +7.8%** (0.152 vs 0.141) - Better motorcycle localization
+
+> **mAP50-95 measures accuracy at stricter IoU thresholds. YOLO-TLP's superior performance shows it produces tighter, more accurate bounding boxes for small objects.**

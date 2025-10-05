@@ -298,9 +298,7 @@
 
 <p><em>Tested on NVIDIA RTX 3060 with FP32 precision</em></p>
 
-<div class="success-box">
-    <p><strong>Summary:</strong> YOLO-TLP represents a significant advancement in small object detection, combining architectural innovations (SPDConv, P2 detection), efficiency improvements (39% faster, 25% smaller), and superior performance on challenging small object classes. The model is production-ready for real-world applications requiring real-time small object detection.</p>
-</div>
+
 
 </body>
 </html>

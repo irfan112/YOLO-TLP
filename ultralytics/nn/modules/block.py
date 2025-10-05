@@ -50,6 +50,11 @@ __all__ = (
     "PSA",
     "SCDown",
     "TorchVision",
+    "A2C2f",
+    "CBAM",
+    "CBAM_Lite",
+    "SPDConv"
+
 )
 
 
@@ -1367,3 +1372,130 @@ class A2C2f(nn.Module):
         if self.gamma is not None:
             return x + self.gamma.view(1, -1, 1, 1) * self.cv2(torch.cat(y, 1))
         return self.cv2(torch.cat(y, 1))
+    
+
+class ChannelAttention(nn.Module):
+    """Channel attention module using both average and max pooling."""
+    
+    def __init__(self, channels, reduction=16):
+        """
+        Args:
+            channels: Number of input channels
+            reduction: Channel reduction ratio for the MLP
+        """
+        super(ChannelAttention, self).__init__()
+        self.avg_pool = nn.AdaptiveAvgPool2d(1)
+        self.max_pool = nn.AdaptiveMaxPool2d(1)
+        
+        # Shared MLP (implemented with Conv2d for efficiency)
+        self.fc = nn.Sequential(
+            nn.Conv2d(channels, channels // reduction, 1, bias=False),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(channels // reduction, channels, 1, bias=False)
+        )
+        self.sigmoid = nn.Sigmoid()
+    
+    def forward(self, x):
+        """Forward pass for channel attention."""
+        avg_out = self.fc(self.avg_pool(x))
+        max_out = self.fc(self.max_pool(x))
+        out = self.sigmoid(avg_out + max_out)
+        return out
+
+
+class SpatialAttention(nn.Module):
+    """Spatial attention module using channel-wise pooling."""
+    
+    def __init__(self, kernel_size=7):
+        """
+        Args:
+            kernel_size: Kernel size for the spatial attention convolution
+        """
+        super(SpatialAttention, self).__init__()
+        assert kernel_size in (3, 7), 'kernel size must be 3 or 7'
+        padding = 3 if kernel_size == 7 else 1
+        
+        self.conv = nn.Conv2d(2, 1, kernel_size, padding=padding, bias=False)
+        self.sigmoid = nn.Sigmoid()
+    
+    def forward(self, x):
+        """Forward pass for spatial attention."""
+        # Channel-wise pooling
+        avg_out = torch.mean(x, dim=1, keepdim=True)
+        max_out, _ = torch.max(x, dim=1, keepdim=True)
+        
+        # Concatenate and apply convolution
+        out = torch.cat([avg_out, max_out], dim=1)
+        out = self.sigmoid(self.conv(out))
+        return out
+
+
+class CBAM(nn.Module):
+    """
+    Convolutional Block Attention Module (CBAM).
+    
+    Can be used with explicit channels or auto-detect from previous layer.
+    Usage in YAML:
+        - [-1, 1, CBAM, [256]]        # Explicit channels
+        - [-1, 1, CBAM, [256, 16, 7]]  # With custom reduction and kernel
+    """
+    
+    def __init__(self, c1, c2=None, reduction=16, kernel_size=7):
+        """
+        Args:
+            c1: Number of input channels
+            c2: Number of output channels (unused, kept for compatibility)
+            reduction: Channel reduction ratio (default: 16)
+            kernel_size: Spatial attention kernel size (default: 7)
+        """
+        super(CBAM, self).__init__()
+        self.channel_attention = ChannelAttention(c1, reduction)
+        self.spatial_attention = SpatialAttention(kernel_size)
+    
+    def forward(self, x):
+        """Forward pass with channel and spatial attention."""
+        x = x * self.channel_attention(x)
+        x = x * self.spatial_attention(x)
+        return x
+
+
+class CBAM_Lite(nn.Module):
+    """Lightweight CBAM variant for faster inference."""
+    
+    def __init__(self, c1, c2=None, reduction=8, kernel_size=3):
+        super(CBAM_Lite, self).__init__()
+        self.channel_attention = ChannelAttention(c1, reduction)
+        self.spatial_attention = SpatialAttention(kernel_size)
+    
+    def forward(self, x):
+        x = x * self.channel_attention(x)
+        x = x * self.spatial_attention(x)
+        return x
+    
+
+class SPDConv(nn.Module):
+    """
+    Space-to-Depth Convolution for preserving fine-grained information.
+    
+    Converts spatial dimensions to channels before downsampling.
+    Critical for small object detection - retains 100% spatial info vs 75% loss in stride-2 conv.
+    
+    Usage in YAML:
+        - [-1, 1, SPDConv, [256]]
+    """
+    
+    def __init__(self, c1, c2, k=3, s=1):
+        """
+        Args:
+            c1: Input channels (auto-passed by YOLO)
+            c2: Output channels (specified in YAML)
+        """
+        super().__init__()
+        # Space-to-Depth increases channels by 4x
+        self.conv = Conv(c1 * 4, c2, k=k, s=s)
+        self.space_to_depth = nn.PixelUnshuffle(2)
+    
+    def forward(self, x):
+        """Forward pass: [B, C, H, W] → [B, 4C, H/2, W/2] → [B, c2, H/2, W/2]"""
+        x = self.space_to_depth(x)
+        return self.conv(x)

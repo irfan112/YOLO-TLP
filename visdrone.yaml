@@ -1,10 +1,10 @@
+# VisDrone dataset configuration
+path: /media/cv/47147876-7940-488e-acb2-0ebc8e3c3679/home/repos/yolov12/YOLO-TLP/VisDrone
+train: VisDrone2019-DET-train/images
+val: VisDrone2019-DET-val/images
+test: VisDrone2019-DET-test-dev/images
 
-train: VisDrone/VisDrone2019-DET-train/images
-val: VisDrone/VisDrone2019-DET-val
-test: VisDrone/VisDrone2019-DET-val
-
-nc: 10
-
+# Classes
 names:
   0: pedestrian
   1: people
@@ -16,3 +16,5 @@ names:
   7: awning-tricycle
   8: bus
   9: motor
+
+nc: 10

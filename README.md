@@ -173,6 +173,13 @@
     <p><strong>YOLO-TLP</strong> (You Only Look Once - Tiny and Large-scale Precision) is a specialized object detection model optimized for small object detection in challenging real-world scenarios. Built upon the YOLO architecture, YOLO-TLP introduces novel modifications that preserve spatial information during downsampling, enabling superior detection of tiny objects (8-128 pixels) while maintaining real-time inference speeds.</p>
 </div>
 
+<div>
+    <span class="badge badge-blue">PyTorch</span>
+    <span class="badge badge-green">Real-time Detection</span>
+    <span class="badge badge-orange">Small Objects</span>
+    <span class="badge badge-purple">1.9M Parameters</span>
+</div>
+
 <h2>Introduction</h2>
 
 <p>Object detection has made remarkable progress in recent years, with YOLO-series models achieving state-of-the-art performance on standard benchmarks. However, a persistent challenge remains: <strong>detecting small objects</strong> (objects occupying less than 32×32 pixels in an image). Traditional downsampling operations in convolutional neural networks cause significant information loss, particularly affecting small objects whose spatial features are already limited.</p>

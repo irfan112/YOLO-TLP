@@ -430,4 +430,15 @@
 - **Lower Computational Requirements:** When GFLOPs matter (5.9 vs 9.2)
 
 
+<p align="center">
+  <img src="assets/yolotlp.gif" alt="YOLO-TLP Results" width="45%">
+  &nbsp;&nbsp;&nbsp;
+  <img src="assets/yolov12n.gif" alt="YOLOv12n Results" width="45%">
+</p>
+
+<p align="center">
+  <b>YOLO-TLP (Left)</b> vs <b>YOLOv12n (Right)</b>
+</p>
+
+
 

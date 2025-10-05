@@ -51,8 +51,7 @@
     </div>
     
     <div class="feature-card">
-        <h4>2. P2-Level Detection</h4>
-        <p>Adds a detection head at 4× higher resolution (P2/4) compared to standard P3/8, providing 16× more spatial detail for tiny objects.</p>
+        <code>Output = Conv(Input, stride=2)</code>
     </div>
     
     <div class="feature-card">

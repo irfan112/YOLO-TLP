@@ -40,25 +40,7 @@
     <p><strong>Real-world Impact:</strong> Small object detection failures can have serious consequences in applications like autonomous driving (missing pedestrians), surveillance (undetected intruders), and medical imaging (overlooked lesions).</p>
 </div>
 
-<h3>Solution Approach</h3>
 
-<p>YOLO-TLP introduces a three-pronged approach to tackle small object detection:</p>
-
-<div class="feature-grid">
-    <div class="feature-card">
-        <h4>1. Space-to-Depth Convolution</h4>
-        <p>Replaces information-losing stride-2 convolutions with SPDConv modules that preserve 100% of spatial information by converting spatial dimensions to channels.</p>
-    </div>
-    
-    <div class="feature-card">
-        <code>Output = Conv(Input, stride=2)</code>
-    </div>
-    
-    <div class="feature-card">
-        <h4>3. Efficient Architecture</h4>
-        <p>Optimized backbone with PSA attention and streamlined layers achieves faster inference with fewer parameters.</p>
-    </div>
-</div>
 
 <!-- IMPORTANCE SECTION -->
 <h2>Importance and Applications</h2>
@@ -248,17 +230,7 @@
         <h4>Top-Down Path (FPN)</h4>
         <p>Propagates strong semantic features from deep layers to shallow layers through upsampling and concatenation.</p>
     </div>
-    
-    <div class="feature-card">
-        <h4>Bottom-Up Path (PAN)</h4>
-        <p>Reinforces localization features by propagating strong spatial information from shallow to deep layers.</p>
-    </div>
-    
-    <div class="feature-card">
-        <h4>Multi-Scale Fusion</h4>
-        <p>Skip connections at P2, P3, and P4 enable effective feature reuse across scales.</p>
-    </div>
-</div>
+
 
 <h3>5. Training Strategy</h3>
 

@@ -298,15 +298,11 @@
 
 <p><em>Tested on NVIDIA RTX 3060 with FP32 precision</em></p>
 
-
 </body>
 </html>
 
 ## Architecture Diagram
 
 <div align="center">
-
-![YOLO-TLP Architecture](/media/cv/47147876-7940-488e-acb2-0ebc8e3c3679/home/repos/yolov12/YOLO-TLP/assets/yolotlp.jpg)
-
+  <img src="assets/yolotlp.jpg" alt="YOLO-TLP Architecture" width="100%">
 </div>
-

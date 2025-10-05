@@ -355,3 +355,79 @@
 - **Trade-off:** Higher GFLOPs (9.2 vs 5.9) due to SPDConv operations, but still delivers faster overall inference
 
 > **YOLO-TLP achieves superior speed and efficiency through optimized architecture, making it ideal for resource-constrained environments requiring real-time small object detection.**
+
+
+<div align="center">
+  <img src="assets/All 10 Classes.jpg" alt="All Visdrone classes Comparison" width="100%">
+</div>
+
+### YOLO-TLP Performs Better On:
+- **Pedestrian:** +5.0% (small person detection)
+- **People:** +8.0% (small/partial people)
+- **Bicycle:** +12.4% (tiny two-wheelers)
+- **Car:** +1.1% (common vehicles)
+- **Awning-Tricycle:** +7.3% (covered vehicles)
+- **Motor:** +2.6% (motorcycles/scooters)
+> **6 out of 10 classes - Dominates in small object categories**
+
+### YOLOv12n Performs Better On:
+- **Van:** -11.4% (medium vehicles)
+- **Truck:** -27.1% (large vehicles)
+- **Tricycle:** -14.8% (three-wheelers)
+- **Bus:** -20.4% (large public transport)
+> **4 out of 10 classes - Struggles with medium-large objects**
+
+> **YOLO-TLP is specifically optimized for small object detection, achieving superior performance on 6 out of 10 classes including all small objects (pedestrians, people, bicycles, motors). The trade-off is reduced performance on medium-large objects (van, truck, bus), resulting in a 5.6% lower overall mAP50 (0.305 vs 0.323). This makes YOLO-TLP ideal for applications where small object detection is the priority: surveillance, crowd monitoring, autonomous navigation, and similar use cases.**
+
+<div align="center">
+  <img src="assets/Precision vs Recall Analysis.jpg" alt="Precision vs Recall Analysis" width="100%">
+</div>
+
+- **Overall Precision:** YOLOv12n (42.0%) vs YOLO-TLP (41.7%) - Nearly identical quality
+- **Overall Recall:** YOLOv12n (32.8%) vs YOLO-TLP (31.0%) - Both models conservative
+- **Small Objects:** YOLO-TLP shows better recall on pedestrians (37.3% vs 33.8%) and motors (37.8% vs 36.3%)
+- **Large Objects:** YOLOv12n has superior recall on trucks (31.3% vs 21.9%) and buses (44.6% vs 37.0%)
+- **Balance:** Both models prioritize precision over recall, avoiding false positives
+
+<div align="center">
+  <img src="assets/Overall Model Capabilities Compariso.jpg" alt="Overall Model Capabilities Comparison" width="100%">
+</div>
+
+### YOLOv12n Strengths
+- **Higher overall mAP (0.323 vs 0.305)**
+- **Better medium-large object detection**
+- **Superior van detection (+11.4%)**
+- **Excellent truck detection (+27.1%)**
+- **Better bus detection (+20.4%)**
+- **Lower computational cost (5.9 vs 9.2 GFLOPs)**
+- **Fewer layers (159 vs 270)**
+
+
+### YOLO-TLP Strengths
+- **39% faster inference (1.7ms vs 2.8ms)**
+- **25% fewer parameters (1.9M vs 2.5M)**
+- **Superior small object detection**
+- **Better pedestrian detection (+5.0%)**
+- **Excellent people detection (+8.0%)**
+- **Best bicycle detection (+12.4%)**
+- **SPDConv zero information loss**
+- **P2-level detection for tiny objects**
+
+
+### Choose YOLO-TLP For:
+- **Surveillance & Security:** Detecting people, pedestrians in crowds
+- **Autonomous Navigation:** Small obstacle detection (pedestrians, bicycles, motorcycles)
+- **Crowd Monitoring:** Real-time people counting and tracking
+- **Traffic Analysis:** Two-wheeler and small vehicle detection
+- **Edge Deployment:** Resource-constrained devices requiring speed
+- **Real-time Applications:** Where 39% faster inference matters
+
+
+- **General Object Detection:** Balanced performance across all object sizes
+- **Vehicle Detection:** Cars, vans, trucks, buses (medium-large vehicles)
+- **Logistics & Transport:** Fleet monitoring, cargo detection
+- **Parking Systems:** Various vehicle types detection
+- **Lower Computational Requirements:** When GFLOPs matter (5.9 vs 9.2)
+
+
+

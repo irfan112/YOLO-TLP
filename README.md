@@ -306,3 +306,19 @@
 <div align="center">
   <img src="assets/yolotlp.jpg" alt="YOLO-TLP Architecture" width="100%">
 </div>
+
+## Performance on Small Objects (mAP50)
+
+<div align="center">
+  <img src="assets/mAP50Comparison.jpg" alt="Small Object Detection Performance Comparison" width="100%">
+</div>
+
+### Key Findings:
+
+- **Pedestrian: +5.0%** (0.357 vs 0.340) - Better person detection in crowds
+- **People: +8.0%** (0.282 vs 0.261) - Significant improvement on small people
+- **Bicycle: +12.4%** (0.080 vs 0.071) - Major boost for tiny vehicles
+- **Awning-Tricycle: +7.3%** (0.117 vs 0.109) - Better covered vehicle detection
+- **Motor: +2.6%** (0.357 vs 0.348) - Improved motorcycle detection
+
+> **YOLO-TLP excels at detecting small objects thanks to SPDConv architecture preserving spatial information**

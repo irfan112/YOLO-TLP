@@ -339,3 +339,19 @@
 - **Motor: +7.8%** (0.152 vs 0.141) - Better motorcycle localization
 
 > **mAP50-95 measures accuracy at stricter IoU thresholds. YOLO-TLP's superior performance shows it produces tighter, more accurate bounding boxes for small objects.**
+
+
+## Speed & Efficiency Comparison
+
+<div align="center">
+  <img src="assets/Efficiency Comparison.jpg" alt="Speed and Efficiency Comparison" width="100%">
+</div>
+
+### Efficiency Analysis:
+
+- **Speed Advantage:** YOLO-TLP achieves 39% faster inference (1.7ms vs 2.8ms), crucial for real-time applications like surveillance and autonomous systems
+- **Parameter Efficiency:** 25% fewer parameters (1.9M vs 2.5M) enables deployment on edge devices with limited memory
+- **Deployment Benefits:** Smaller model size (3.8MB) reduces storage and bandwidth requirements
+- **Trade-off:** Higher GFLOPs (9.2 vs 5.9) due to SPDConv operations, but still delivers faster overall inference
+
+> **YOLO-TLP achieves superior speed and efficiency through optimized architecture, making it ideal for resource-constrained environments requiring real-time small object detection.**

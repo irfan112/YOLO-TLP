@@ -440,5 +440,64 @@
   <b>YOLO-TLP </b> vs <b>YOLOv12n </b>
 </p>
 
+---
 
+## Downloads
 
+### Dataset
+
+**VisDrone Dataset (YOLO Format)**
+
+The VisDrone dataset has been preprocessed and converted to YOLO format for easy training and evaluation.
+
+<div align="center">
+
+[![Download Dataset](https://img.shields.io/badge/Download-VisDrone_YOLO_Format-blue?style=for-the-badge&logo=googledrive)](https://drive.google.com/file/d/1tfT36SlzV_KygLNA9ZGGpkJjl4MuI64n/view?usp=sharing)
+
+</div>
+
+**Dataset Details:**
+- Format: YOLO (txt annotations)
+- Images: 10,209 total
+- Classes: 10 object categories
+- Split: Train/Val/Test
+- Size: ~2.3GB
+
+### Pre-trained Weights
+
+**YOLO-TLP Model Weights**
+
+Download the pre-trained YOLO-TLP-n model weights trained on VisDrone dataset.
+
+<div align="center">
+
+[![Download Weights](https://img.shields.io/badge/Download-YOLO--TLP_Weights-green?style=for-the-badge&logo=googledrive)](https://drive.google.com/file/d/1bsF5pOelOaIMD1bf4NXfx_-8vMiQ1ztF/view?usp=sharing)
+
+</div>
+
+## Training
+
+### Train from Scratch or Resume Training
+```bash
+
+yolo detect train \
+  model=ultralytics/cfg/models/v12/yolov12.yaml \
+  data=your_dataset.yaml \
+  epochs=100 \
+  imgsz=640 \
+  batch=8 \
+  device=0 \
+  project=yoloTLP_runs \
+  name=exp1 \
+
+```bash
+# Webcam inference
+yolo predict model=weights/best.pt source=0 show=True
+
+```bash
+# Folder of images
+yolo predict model=weights/best.pt source=test_images/ save=True
+
+```bash
+# RTSP stream
+yolo predict model=weights/best.pt source=rtsp://your_stream_url

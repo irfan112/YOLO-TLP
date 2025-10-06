@@ -501,3 +501,60 @@ yolo predict model=weights/best.pt source=test_images/ save=True
 ```bash
 # RTSP stream
 yolo predict model=weights/best.pt source=rtsp://your_stream_url
+
+
+## References and Acknowledgments
+
+### Built Upon
+
+This work builds upon several excellent open-source projects:
+
+- **[Ultralytics](https://github.com/ultralytics/ultralytics)** - YOLO framework and implementation
+
+@software{ultralytics_yolo,
+author = {Glenn Jocher and others},
+title = {Ultralytics YOLO},
+year = {2023},
+url = {https://github.com/ultralytics/ultralytics}
+}
+
+- **[YOLOv12](https://github.com/sunsmarterjie/yolov12)** - Base architecture and improvements
+
+@misc{yolov12,
+author = {sunsmarterjie},
+title = {YOLOv12},
+year = {2024},
+url = {https://github.com/sunsmarterjie/yolov12}
+}
+
+- **[SPD-Conv](https://github.com/LabSAINT/SPD-Conv)** - Space-to-Depth convolution module
+
+
+@inproceedings{sunkara2022no,
+title={No More Strided Convolutions or Pooling: A New CNN Building Block for Low-Resolution Images and Small Objects},
+author={Sunkara, Raja and Luo, Tie},
+booktitle={ECML PKDD},
+year={2022}
+}
+
+
+### Special Thanks
+
+We gratefully acknowledge the computer vision community for their contributions to open-source object detection research. Special thanks to:
+
+- The YOLO community for continuous innovation
+- VisDrone dataset creators for providing challenging small object detection benchmarks
+- Contributors to PyTorch and related deep learning frameworks
+
+---
+
+## Citation
+
+If you use YOLO-TLP in your research, please cite:
+```bibtex
+@article{yolotlp2025,
+  title={YOLO-TLP: Enhanced Small Object Detection with Space-to-Depth Convolutions},
+  author={Irfan Hussain},
+  journal={arXiv preprint arXiv:XXXX.XXXXX},
+  year={2024}
+}

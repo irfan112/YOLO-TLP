@@ -437,7 +437,7 @@
 </p>
 
 <p align="center">
-  <b>YOLO-TLP (Left)</b> vs <b>YOLOv12n (Right)</b>
+  <b>YOLO-TLP </b> vs <b>YOLOv12n </b>
 </p>
 
 

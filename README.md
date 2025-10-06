@@ -429,7 +429,7 @@
 - **Parking Systems:** Various vehicle types detection
 - **Lower Computational Requirements:** When GFLOPs matter (5.9 vs 9.2)
 
-
+<br>
 <p align="center">
   <img src="assets/yolotlp.gif" alt="YOLO-TLP Results" width="45%">
   &nbsp;&nbsp;&nbsp;
